@@ -1,0 +1,25 @@
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# Resume and Data files (exclude personal PDFs/DOCX)
+data/*
+!data/.gitkeep
+
+# Vector Index & Outputs
+data/faiss_index/
+output/
+*.log
+
+# Python Cache & Builds
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/

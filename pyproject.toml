@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cv-agent"
+version = "1.0.0"
+description = "Agentic CV Question Answering System using LangGraph + Google Gemini"
+requires-python = ">=3.10"
+dependencies = [
+    # Core LangChain / LangGraph
+    "langchain>=0.3.0",
+    "langchain-core>=0.3.0",
+    "langchain-community>=0.3.0",
+    "langchain-google-genai>=2.0.0",
+    "langgraph>=0.2.0",
+    # Vector store
+    "faiss-cpu>=1.8.0",
+    # Document loaders
+    "pypdf>=4.0.0",
+    "python-docx>=1.1.0",
+    # Config
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.3.0",
+    "python-dotenv>=1.0.0",
+    # CLI & UI
+    "rich>=13.7.0",
+    "streamlit>=1.35.0",
+]
+
+[project.optional-dependencies]
+openai = ["langchain-openai>=0.2.0"]
+ollama = []  # uses langchain-community which is already in core deps
+test = [
+    "pytest>=8.0.0",
+    "pytest-mock>=3.14.0",
+]
+dev = [
+    "cv-agent[test]",
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+cv-agent = "cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cv_agent*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
